@@ -1,0 +1,112 @@
+{
+  "schema": "SHOPXZ_JP_ASSETS_v1",
+  "version": "1.0.0",
+  "prepared_at": "2026-10-11",
+  "source": "Validated Japanese B2C system templates and recovery email layouts; normalized for reuse.",
+  "system_emails": [
+    {
+      "file": "system-emails/01-2-customer-welcome.json",
+      "type": 1,
+      "category": 2,
+      "sha256": "1c82c2c54c0a3cbecdcb6dc7589dff7e12917b480b2367f81c6f69b6bbbcc3b5"
+    },
+    {
+      "file": "system-emails/02-2-password-reset.json",
+      "type": 2,
+      "category": 2,
+      "sha256": "fd6a8c43dcc9d0fa972bbac2088833c127b9e05fc04e687cfacad6e028d0c457"
+    },
+    {
+      "file": "system-emails/03-1-order-confirmed.json",
+      "type": 3,
+      "category": 1,
+      "sha256": "e9ec4dc0956a84ed758035075c399f0a79a7527874df1ab1d34469e03d68998c"
+    },
+    {
+      "file": "system-emails/04-2-customer-contacts.json",
+      "type": 4,
+      "category": 2,
+      "sha256": "140be73acb90bf0e595569c4d3476cd6a399db80cb21c5a66d87951510267ddd"
+    },
+    {
+      "file": "system-emails/05-1-order-shipped.json",
+      "type": 5,
+      "category": 1,
+      "sha256": "ff148afc52a55f4d18ee243db8d090760ffface7ae640814a2d4b6a8abee3c2b"
+    },
+    {
+      "file": "system-emails/06-1-order-delivered.json",
+      "type": 6,
+      "category": 1,
+      "sha256": "03016e4066b61bba0de4afd157feec0be1e74b038ae40bf4c6d30edc053cf4dc"
+    },
+    {
+      "file": "system-emails/07-1-order-canceled.json",
+      "type": 7,
+      "category": 1,
+      "sha256": "14ede5c1375059363b20bc4102f9ddb329dd697e4e14b5bc834caac622826984"
+    },
+    {
+      "file": "system-emails/08-1-order-refunded.json",
+      "type": 8,
+      "category": 1,
+      "sha256": "c92e13f382a919528ea0fced7af7fbd4d26bcfdc55a77653000445d07564023e"
+    },
+    {
+      "file": "system-emails/09-3-cart-recall-system.json",
+      "type": 9,
+      "category": 3,
+      "sha256": "b8f65931beae180c5a522811d31213d37dce2215601d48664b4b49bd753eb9a0"
+    },
+    {
+      "file": "system-emails/10-2-guest-login-code.json",
+      "type": 10,
+      "category": 2,
+      "sha256": "3010dc99bdab067dbbdfaa69165c066faf19574d78d5c3520eb20eddaf89b2a1"
+    },
+    {
+      "file": "system-emails/11-2-customer-inquire.json",
+      "type": 11,
+      "category": 2,
+      "sha256": "b78e29dd7bd14d276731f1b1f0a41c985241f5be49c62739e2ce5e9d42d8f6b2"
+    },
+    {
+      "file": "system-emails/12-4-merchant-order.json",
+      "type": 12,
+      "category": 4,
+      "sha256": "7dd03f81ccf55933641c39c11478fab8e810c36c910f8948b34baf15d39761c3"
+    },
+    {
+      "file": "system-emails/13-3-download-file.json",
+      "type": 13,
+      "category": 3,
+      "sha256": "ad94efa297ef8320934bb1a10d4b8c8255609e3833216ac2894089aa67cfc707"
+    },
+    {
+      "file": "system-emails/14-2-newsletter.json",
+      "type": 14,
+      "category": 2,
+      "sha256": "a00ef0988db06703a9f35c2251fdded9172c48956a6981883e5ae1a19256b25c"
+    },
+    {
+      "file": "system-emails/15-1-order-payment-processing.json",
+      "type": 15,
+      "category": 1,
+      "sha256": "de3ec30e2d3b0b8d913f4fd089fb72829c843b54ac22137c2ba9b899242f4e76"
+    }
+  ],
+  "recall_layouts": [
+    {
+      "file": "recall-emails/reminder.html",
+      "sha256": "cba4ee9e074a3a4d4be3403e8c7ba002ed6bd75b62912ebfe979b386a0fcab67"
+    },
+    {
+      "file": "recall-emails/offer.html",
+      "sha256": "6c87fd08e077defa0a1b73687689cb65f13aed99dc5b5e26f5f6b8eade4713d6"
+    },
+    {
+      "file": "recall-emails/final-offer.html",
+      "sha256": "35774cb031aeb6da5efae5f0e9fa5bfd5ec28c33f4eef35b30901a2228e6a68d"
+    }
+  ]
+}

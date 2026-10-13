@@ -1,0 +1,8 @@
+{
+  "schema": "SHOPXZ_JP_PROFILE_PATCH_v1",
+  "extends": "jp-core",
+  "label": "日本服饰示例；商家采用后才成为该站规则",
+  "shipping": {"base_fee": 399, "free_threshold": 5000, "handling_business_days": [3, 7]},
+  "storefront": {"industry": "apparel", "style_brief": "按真实品牌与商品规划日语服饰商城；优先手机购买体验。"},
+  "marketing": {"preset": "jp-apparel"}
+}

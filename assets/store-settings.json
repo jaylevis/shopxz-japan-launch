@@ -1,0 +1,60 @@
+{
+  "schema": "SHOPXZ_JP_STORE_SETTINGS_v1",
+  "basic": {
+    "apply": true,
+    "allow_currency_change": false
+  },
+  "checkout": {
+    "apply": true,
+    "values": {
+      "login_account": 1,
+      "deduct_stock": 2,
+      "product_status_check": 2,
+      "checkout_page_type": 1,
+      "contact_type": 5,
+      "name_type": 2,
+      "name_require_type": 2,
+      "address_company": 3,
+      "address_street_2": 3,
+      "address_zip": 1,
+      "customer_can_cancel_order": 1,
+      "pending_order_cancel_datetime": 0
+    }
+  },
+  "country": {
+    "apply": true
+  },
+  "advanced": {
+    "apply": false,
+    "values": {}
+  },
+  "tasks": {
+    "apply": true,
+    "values": {
+      "reflush_cache_type": 2
+    }
+  },
+  "captcha": {
+    "apply": false,
+    "values": {}
+  },
+  "payment": {
+    "enable_codes": [],
+    "credentials_verified_codes": [],
+    "preferred_code": null
+  },
+  "shipping": {
+    "mode": "prepare",
+    "shipping_id": null,
+    "zone_id": null,
+    "name": "通常配送",
+    "zone_name": "日本国内",
+    "max_order_amount": 999999999999
+  },
+  "tax": {
+    "mode": "preserve",
+    "prices_include_tax": null,
+    "country_rate": null,
+    "province_rates": []
+  }
+}

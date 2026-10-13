@@ -1,0 +1,6 @@
+interface:
+  display_name: "ShopXZ 日本站快速上线"
+  short_description: "配置日本站的基础、交易、支付、物流等后台设置，以及邮件、召回和装修"
+  default_prompt: "使用 $shopxz-japan-launch 检查当前店铺并按日本市场预设完成配置、装修和上线验收。"
+policy:
+  allow_implicit_invocation: true

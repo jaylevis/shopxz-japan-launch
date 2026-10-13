@@ -1,0 +1,71 @@
+{
+ "schema": "SHOPXZ_JP_MARKETING_v1",
+ "presets": {
+  "jp-apparel": {
+   "coupons": [
+    {
+     "key": "five",
+     "suffix": "5",
+     "value_type": 2,
+     "value": 5,
+     "minimum_requirements_type": 1,
+     "prerequisite_subtotal": 0,
+     "public": true
+    },
+    {
+     "key": "thousand",
+     "suffix": "1000",
+     "value_type": 1,
+     "value": 1000,
+     "minimum_requirements_type": 2,
+     "prerequisite_subtotal": 10000,
+     "public": false
+    }
+   ],
+   "schedules": {
+    "standard": [
+     60,
+     1440,
+     4320,
+     10080
+    ]
+   },
+   "messages": [
+    {
+     "key": "reminder",
+     "template": "reminder",
+     "coupon": null,
+     "end_activity": false
+    },
+    {
+     "key": "help",
+     "template": "help",
+     "coupon": null,
+     "end_activity": false
+    },
+    {
+     "key": "offer",
+     "template": "offer",
+     "coupon": "five",
+     "end_activity": false
+    },
+    {
+     "key": "final",
+     "template": "final",
+     "coupon": "thousand",
+     "end_activity": true
+    }
+   ],
+   "max_time_days": 8,
+   "abandoned_order_interval_minutes": 60,
+   "country": "JP",
+   "language": "ja",
+   "currency": "JPY",
+   "payment_pending": {
+    "first_minutes": 1440,
+    "final_lead_days": 2,
+    "min_deadline_days": 4
+   }
+  }
+ }
+}

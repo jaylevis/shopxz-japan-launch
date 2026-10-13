@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="x-apple-disable-message-reformatting">
+<title>%%TITLE%%</title>
+<style>
+  @media only screen and (max-width: 620px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 20px !important; padding-right: 20px !important; }
+    .cta { display: block !important; min-width: 0 !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#f7f5f2;-webkit-text-size-adjust:100%;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f5f2;">
+    <tr>
+      <td align="center" style="padding:24px 8px;">
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#fffdf9;font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif;color:#404040;">
+          <!-- Header -->
+          <tr>
+            <td class="px" align="center" style="padding:32px 40px 24px 40px;border-bottom:1px solid #e6e1da;">
+              {%- if shop.email_logo_url %}
+              <a href="{{ shop.url }}" style="text-decoration:none;"><img src="{{ shop.email_logo_url }}" alt="{{ shop.name | escape }}" width="140" style="display:block;margin:0 auto 12px auto;max-width:140px;height:auto;border:0;"></a>
+              {%- endif %}
+              <a href="{{ shop.url }}" style="font-size:22px;line-height:1.2;font-weight:bold;letter-spacing:0.24em;color:#404040;text-decoration:none;">{{ shop.name | escape }}</a>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td class="px" style="padding:32px 40px 8px 40px;">
+              <p style="margin:0 0 16px 0;font-size:16px;line-height:1.8;color:#404040;">{{ shop.name | escape }}をご利用いただき、ありがとうございます。</p>
+              <h1 style="margin:0 0 20px 0;font-size:22px;line-height:1.5;font-weight:bold;color:#404040;">%%TITLE%%</h1>
+              <p style="margin:0 0 16px 0;font-size:16px;line-height:1.8;color:#404040;">%%INTRO%%</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 24px 0;border:1px solid #404040;background-color:#ffffff;">
+                <tr>
+                  <td align="center" style="padding:20px 16px;">
+                    <p style="margin:0 0 8px 0;font-size:14px;line-height:1.6;color:#6b6b6b;letter-spacing:0.08em;">クーポンコード</p>
+                    <p style="margin:0 0 12px 0;font-size:24px;line-height:1.4;font-weight:bold;color:#404040;letter-spacing:0.12em;word-break:break-all;">{{ coupon_code | escape }}</p>
+                    <p style="margin:0;font-size:14px;line-height:1.7;color:#404040;text-align:left;">%%TERMS%%</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0 0 16px 0;font-size:16px;line-height:1.8;color:#404040;">下のボタンからご注文画面を開き、クーポンの適用内容をご確認ください。</p>
+              <p style="margin:0 0 16px 0;font-size:16px;line-height:1.8;color:#404040;">このご注文についての定期的なご案内は、今回で終了いたします。</p>
+              <!-- CTA -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 24px 0;">
+                <tr>
+                  <td align="center">
+                    <a class="cta" href="{{ order.view_url }}" style="display:inline-block;min-width:260px;padding:16px 32px;background-color:#404040;color:#ffffff;font-size:17px;line-height:1.4;font-weight:bold;text-align:center;text-decoration:none;border-radius:4px;">ご注文内容を確認する</a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0 0 12px 0;font-size:14px;line-height:1.6;color:#404040;">ご注文番号：{{ order.order_number | escape }}</p>
+              <!-- Items -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 16px 0;border-top:1px solid #e6e1da;">
+                {% for line in order.items %}
+                <tr>
+                  {%- if line.image %}
+                  <td width="72" valign="top" style="width:72px;padding:12px 12px 12px 0;border-bottom:1px solid #e6e1da;">
+                    <img src="{{ line.image }}" alt="{{ line.product_title | escape }}" width="60" style="display:block;width:60px;height:auto;border:0;">
+                  </td>
+                  {%- endif %}
+                  <td valign="top" style="padding:12px 0;border-bottom:1px solid #e6e1da;font-size:14px;line-height:1.6;color:#404040;">
+                    <span style="font-weight:bold;">{{ line.product_title | escape }}</span>
+                    {%- if line.variant_title %}<br><span style="color:#6b6b6b;">{{ line.variant_title | escape }}</span>{%- endif %}
+                  </td>
+                  <td width="56" align="right" valign="top" style="width:56px;padding:12px 0 12px 8px;border-bottom:1px solid #e6e1da;font-size:14px;line-height:1.6;color:#404040;white-space:nowrap;">&times; {{ line.qty | escape }}</td>
+                </tr>
+                {% endfor %}
+              </table>
+              <p style="margin:0 0 24px 0;font-size:13px;line-height:1.7;color:#6b6b6b;">商品価格・在庫状況・最終的なお支払い金額は、ご注文確認画面でご確認ください。</p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td class="px" style="padding:24px 40px 32px 40px;border-top:1px solid #e6e1da;background-color:#f7f5f2;">
+              <p style="margin:0 0 12px 0;font-size:13px;line-height:1.7;color:#6b6b6b;">このメールは、ご購入手続きが完了していないご注文についてのご案内です。すでにお支払い済みの場合は、行き違いのご案内となりますことをお詫びいたします。</p>
+              <p style="margin:0 0 16px 0;font-size:13px;line-height:1.7;color:#6b6b6b;">ご不明な点や、このご案内の停止をご希望の場合は、<a href="mailto:{{ shop.email }}" style="color:#404040;text-decoration:underline;">{{ shop.email | escape }}</a> までご連絡ください。</p>
+              <p style="margin:0;font-size:12px;line-height:1.6;"><a href="{{ shop.url }}" style="color:#8a8a8a;text-decoration:none;letter-spacing:0.16em;">{{ shop.name | escape }}</a></p>
+            </td>
+          </tr>
+        </table>
+        {{ order.track_image }}
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
