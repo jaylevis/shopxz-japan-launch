@@ -90,6 +90,10 @@ def _exec_config(ctx, op, ev):
     body = copy.deepcopy(base)
     for p in paths:
         set_path(body, p, get_path(op["desired"], p))
+    # fresh stores read unset array/object fields back as "", which v6 strict validation rejects
+    for k, v in op["desired"].items():
+        if isinstance(v, (list, dict)) and not isinstance(body.get(k), type(v)):
+            body[k] = copy.deepcopy(v)
     if write_api == "fixedcart/set" and not isinstance(body.get("diy_view"), dict):
         body["diy_view"] = {}
     ctx.write(write_api, body)
