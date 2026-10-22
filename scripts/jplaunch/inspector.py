@@ -14,8 +14,9 @@ from .util import LaunchError, iso, now_jst, sha256_obj, write_json_immutable
 SNAPSHOT_SCHEMA = "SHOPXZ_JP_SNAPSHOT_v1"
 # profile module -> fecify addon identity reported by shop-info/init
 MODULE_ADDONS = {"japancheckout": "japancheckout", "viewed": "prodviewed", "fixedcart": "fixedcart",
-                 "emails": "notice", "marketing": "emailrecall"}
-CONFIG_READS = {"japancheckout": "japancheckout/get", "viewed": "prodviewed/get", "fixedcart": "fixedcart/get"}
+                 "cfsaas": "cfsaas", "emails": "notice", "marketing": "emailrecall"}
+CONFIG_READS = {"japancheckout": "japancheckout/get", "viewed": "prodviewed/get", "fixedcart": "fixedcart/get",
+                "cfsaas": "cfsaas/get"}
 PAYMENT_KEYS = ("id", "name", "title", "identity", "code", "type", "status", "sort", "is_top")
 
 

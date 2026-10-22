@@ -11,7 +11,7 @@ from .util import ASSETS_ROOT, JST, LaunchError, as_int, now_jst, read_json, sha
 PROFILE_SCHEMA = "SHOPXZ_JP_PROFILE_v1"
 PATCH_SCHEMA = "SHOPXZ_JP_PROFILE_PATCH_v1"
 PRESET_FILES = {"jp-core": "profiles/jp-core.json", "jp-apparel": "profiles/jp-apparel.json"}
-MODULE_KEYS = ("basic", "japancheckout", "viewed", "fixedcart", "emails", "marketing")
+MODULE_KEYS = ("basic", "japancheckout", "viewed", "fixedcart", "cfsaas", "emails", "marketing")
 NAME_ORDERS = ("first_last", "last_first")
 HEX_COLOR = re.compile(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$")
 PREFIX = re.compile(r"^[A-Za-z0-9]{2,16}$")

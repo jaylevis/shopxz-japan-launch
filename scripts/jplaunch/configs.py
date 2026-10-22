@@ -12,6 +12,7 @@ CONFIG_APIS = {
     "viewed": {"read": "prodviewed/get", "write": "prodviewed/set"},
     "fixedcart": {"read": "fixedcart/get", "write": "fixedcart/set"},
     "recall": {"read": "emailrecall/get", "write": "emailrecall/set"},
+    "cfsaas": {"read": "cfsaas/get", "write": "cfsaas/set"},
     # v1.1 store settings menu
     "basic": {"read": "system-settings/basic_get", "write": "system-settings/basic_set"},
     "currency": {"read": "system-settings/basic_get", "write": "system-settings/basic_set_currency"},
@@ -30,6 +31,7 @@ WRITE_KEYS = {
     "fixedcart/set": ("status", "client_type", "button_text", "click_type", "color_type", "color_info",
                       "pc_type", "h5_type", "diy_view"),
     "emailrecall/set": ("status", "system_recall", "sms_product_title_length"),
+    "cfsaas/set": ("status",),
     "system-settings/basic_set": ("site_status", "site_name", "site_logo", "site_ico", "site_email", "language",
                                   "timezone", "order_guest_query", "order_number_prefix", "order_number_suffix",
                                   "handle_type"),
@@ -57,6 +59,7 @@ CONTRACT_PATHS = {
     "fixedcart/set": [("status",), ("client_type",), ("click_type",), ("pc_type",), ("h5_type",),
                       ("button_text", "name")],
     "emailrecall/set": [("status",), ("system_recall",)],
+    "cfsaas/set": [("status",)],
 }
 # Complete-object saves: omitted keys are reset, so unknown live keys would be lost.
 RESETS_OMITTED = {"fixedcart/set", "system-settings/basic_set", "system-settings/country_set",
@@ -113,6 +116,16 @@ def japancheckout_desired(live):
     if as_int(live.get("status")) == 1 and as_int(live.get("condition")) in (1, 4):
         return {"status": live.get("status"), "condition": live.get("condition")}, ["already enabled for Japanese language"]
     return {"status": 1, "condition": 1}, []
+
+
+def cfsaas_desired(live):
+    """Cloudflare SaaS merchant switch; cfsaas/set is only allowed while the server side permits it."""
+    live = live or {}
+    if as_int(live.get("status")) == 1:
+        return {"status": 1}, ["already enabled"]
+    if as_int(live.get("admin_status")) != 1 or as_int(live.get("admin_is_force")) == 1:
+        return {"status": live.get("status")}, ["server-side admin_status/admin_is_force forbids cfsaas/set; left as is"]
+    return {"status": 1}, []
 
 
 def viewed_desired(live, accent):

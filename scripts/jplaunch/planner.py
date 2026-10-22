@@ -3,7 +3,7 @@
 from . import marketing as mkt
 from .assets import (JAPANESE, allowed_from, apply_name_order, load_recall_layouts, load_system_emails,
                      name_pairs, unsupported_variables)
-from .configs import (CONFIG_APIS, CONTRACT_PATHS, RESETS_OMITTED, fixedcart_desired, japancheckout_desired, recall_desired,
+from .configs import (CONFIG_APIS, CONTRACT_PATHS, RESETS_OMITTED, cfsaas_desired, fixedcart_desired, japancheckout_desired, recall_desired,
                       submit_view, unknown_keys, viewed_desired)
 from .profile import load_marketing_preset, profile_hash, valid_accent, validate_profile
 from .backend import plan_backend
@@ -13,7 +13,7 @@ from .util import ASSETS_ROOT, sem_equal, LaunchError, as_int, iso, jst_text, le
     sha256_obj, sha256_text
 
 PLAN_SCHEMA = "SHOPXZ_JP_PLAN_v1"
-MODULES = ("japancheckout", "viewed", "fixedcart", "emails", "marketing")
+MODULES = ("japancheckout", "viewed", "fixedcart", "cfsaas", "emails", "marketing")
 LEGACY_RECALL = (9, 3)  # notice type 9 (unfinished-order recall), category 3 (marketing)
 # Platform-provided variables that liquid_variables omits and older store templates may never have used.
 # order.txn_id drives the konbini/bank-transfer payment-instructions link in the payment-processing email.
@@ -209,6 +209,15 @@ def _marketing_ops(b, profile, snapshot, now, assets_root, backend=None):
                                   "reason": "matching coupon is not usable now", "problems": unusable})
             else:
                 plan_ops.append(_adopt(op, same_code[0].get("id")))
+                live_style = same_code[0].get("copywriting")
+                if isinstance(live_style, dict) and live_style != c["body"]["copywriting"]:
+                    cid = as_int(same_code[0].get("id"))
+                    plan_ops.append({"op_id": f"marketing.coupon_style.{c['key']}", "module": "marketing",
+                                     "kind": "coupon_style", "mode": "adopt",
+                                     "api": {"read": "coupon/info", "write": "coupon/update"},
+                                     "target": {"id": cid}, "before": {"id": cid, "copywriting": live_style},
+                                     "desired": {"copywriting": c["body"]["copywriting"]}, "write_expected": True,
+                                     "notes": ["card palette only; business terms are re-submitted unchanged"]})
         else:
             conflicts.append({"resource": "coupon", "code": c["code"], "existing": [d.get("id") for d in same_code],
                               "differences": [mkt.coupon_differences(d, c["body"]) for d in same_code],
@@ -592,6 +601,9 @@ def build_plan(profile, snapshot, snapshot_sha, assets_root=ASSETS_ROOT, now=Non
             elif module == "fixedcart":
                 desired, notes = fixedcart_desired(mstate["config"])
                 _config_op(b, "fixedcart.config", module, CONFIG_APIS[module], mstate["config"], desired, notes)
+            elif module == "cfsaas":
+                desired, notes = cfsaas_desired(mstate["config"])
+                _config_op(b, "cfsaas.config", module, CONFIG_APIS[module], mstate["config"], desired, notes)
             elif module == "emails":
                 unsupported = _email_ops(b, profile, mstate, assets_root)
             elif module == "marketing":

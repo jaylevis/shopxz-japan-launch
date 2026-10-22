@@ -22,7 +22,7 @@ READ_APIS = frozenset({
     "system-settings/basic_get", "system-settings/country_get",
     "payment/active-list",
     "notice/email-config-get", "notice/theme-list", "notice/theme-info", "notice/theme-get-languages",
-    "japancheckout/get", "prodviewed/get", "fixedcart/get",
+    "japancheckout/get", "prodviewed/get", "fixedcart/get", "cfsaas/get",
     "coupon/list", "coupon/info",
     "emailrecall/get", "emailrecall/message-template-list", "emailrecall/message-template-info",
     "emailrecall/activities-list", "emailrecall/activities-info",
@@ -38,9 +38,9 @@ READ_APIS = frozenset({
 # treated as mutations (no identity guard / uncertain-write semantics) and carry an empty JSON body.
 READ_POST_APIS = frozenset({"shop-info/languages", "shop-info/currencies", "shop-info/timezone_list"})
 WRITE_APIS = frozenset({
-    "japancheckout/set", "prodviewed/set", "fixedcart/set",
+    "japancheckout/set", "prodviewed/set", "fixedcart/set", "cfsaas/set",
     "notice/theme-update", "notice/theme-save-languages", "notice/theme-change-status",
-    "coupon/create",
+    "coupon/create", "coupon/update",
     "emailrecall/message-template-save", "emailrecall/activities-save",
     "emailrecall/activities-message-save", "emailrecall/set",
     # v1.1 store settings menu (non-danger documented writes only; shipping/tax saves are danger and

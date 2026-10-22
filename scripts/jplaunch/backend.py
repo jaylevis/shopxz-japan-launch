@@ -290,7 +290,8 @@ def _payment_ops(b, add, acc, ss):
     for code in codes:
         row = by_code.get(code)
         if row is None:
-            b.block(scope, "PAYMENT_CODE_UNKNOWN", f"payment code {code!r} is not in payment/list", {"code": code})
+            b.block(scope, "PAYMENT_CODE_UNKNOWN", f"payment code {code!r} is not in payment/list; addon payments "
+                    "(e.g. netnewpower) appear only after the merchant opens the addon config", {"code": code})
             continue
         if code not in verified:
             b.block(scope, "PAYMENT_CREDENTIALS_UNVERIFIED",

@@ -63,7 +63,7 @@ CLI以应用列表和已启用币种识别多币种风险，并生成汇率后�
 | login_account | 1 | 会员与游客均可购买 |
 | deduct_stock | 2 | 成功下单时扣减；实际库存策略按业务调整 |
 | checkout_page_type | 1 | 快速结账页：配送与支付方式合并为一步（仅Vue主题生效） |
-| product_status_check | 2 | 商品下架后强校验，避免继续购买 |
+| product_status_check | 1 | 不校验商品状态（1.4.0 起默认；需要下架强校验时在 profile 改为 2） |
 | contact_type | 5 | 邮箱和电话必填；经营需要时可改为4等枚举 |
 | name_type / name_require_type | 2 / 2 | 姓名分开填写且均必填 |
 | address_company | 3 | 公司字段隐藏 |

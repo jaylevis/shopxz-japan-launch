@@ -292,6 +292,42 @@ def _exec_resource(ctx, op, ev):
     return new_id
 
 
+# ------------------------------------------------------------------ v1.4 coupon card palette
+
+# coupon/update is a full update: every create field is re-submitted from coupon/info.
+COUPON_UPDATE_FIELDS = ("id", "title", "code", "status", "is_campaign", "starts_at", "ends_at", "value_type", "value",
+                        "usage_limit", "usage_count_per_customer", "product_selection_type", "entitled_product_ids",
+                        "entitled_collection_ids", "minimum_requirements_type", "prerequisite_subtotal",
+                        "prerequisite_quantity", "product_sort", "banner_image", "banner_show_type",
+                        "is_product_page_show", "product_image_height_type", "copywriting")
+
+
+def _eval_coupon_style(ctx, op):
+    live = ctx.adapter.call("coupon/info", query={"id": op["target"]["id"]}) or {}
+    if as_int(live.get("id")) != as_int(op["target"]["id"]):
+        return Eval(CONFLICT, evidence={"reason": "coupon no longer present", "id": op["target"]["id"]})
+    if live.get("copywriting") == op["desired"]["copywriting"]:
+        return Eval(SATISFIED, result_id=as_int(live["id"]), live=live)
+    return Eval(PENDING, live=live)
+
+
+def _exec_coupon_style(ctx, op, ev):
+    body = {k: copy.deepcopy(ev.live.get(k)) for k in COUPON_UPDATE_FIELDS if k in ev.live}
+    body["copywriting"] = op["desired"]["copywriting"]
+    body["ends_at"] = mkt._ends_at(body.get("ends_at"))  # read 0 = unlimited, written as ""
+    for k in ("value", "prerequisite_subtotal"):  # read back as "5.00" strings; v6 validates numbers
+        if isinstance(body.get(k), str):
+            body[k] = float(body[k])
+    ctx.write("coupon/update", body)
+    again = _eval_coupon_style(ctx, op)
+    if again.status != SATISFIED:
+        raise ReadbackMismatch("READBACK_MISMATCH", f"{op['op_id']} copywriting not applied", {"id": op["target"]["id"]})
+    if mkt.coupon_differences(again.live, ev.live):
+        raise ReadbackMismatch("READBACK_MISMATCH", f"{op['op_id']} business terms changed by update",
+                               {"differences": mkt.coupon_differences(again.live, ev.live)})
+    return again.result_id
+
+
 # ------------------------------------------------------------------ v1.3 in-place migration
 
 def _eval_coupon_ref(ctx, op):
@@ -546,6 +582,7 @@ HANDLERS = {
     "activity": (_eval_resource, _exec_resource, None),
     "message": (_eval_resource, _exec_resource, None),
     "coupon_ref": (_eval_coupon_ref, None, None),
+    "coupon_style": (_eval_coupon_style, _exec_coupon_style, None),
     "activity_update": (_eval_activity_update, _exec_activity_update, _undo_activity_update),
     "message_update": (_eval_message_update, _exec_message_update, _undo_message_update),
     "graph_verify": (_eval_graph, None, None),

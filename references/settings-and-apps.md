@@ -21,6 +21,8 @@
 
 - `japancheckout`：默认开启，触发条件为前台语言是日语（`condition=1`），不附加JPY条件。已开启且采用日语触发或强制开启的配置可复用；原先“日语且JPY”或“仅JPY”改为日语触发。核对地址、姓名及邮编交互。
 - `fixedcart`：加购动作1用「カートに入れる」；电脑/手机验证展示及加购。
+- `cfsaas`（Cloudflare SaaS）：默认开启商家端 `status=1`；仅当 `cfsaas/get` 返回 `admin_status=1` 且 `admin_is_force=2` 才写入，否则保持现状并记录。
+- `netnewpower`：预设 `store_settings.payment` 默认启用并置顶 `netnewpower`。该渠道只有商家在插件 `/addons/netnewpower/config` 开启配置后才会出现在 `payment/list`；未出现时计划记 `PAYMENT_CODE_UNKNOWN`，不自造接口。
 - `prodviewed`：日语「最近チェックした商品」，连续浏览两件再检查面板。
 - `notice`：按当前站type+category匹配日语邮件。
 - `emailrecall/coupon`：按完整关联与业务条件核对，参阅 [邮件与召回](email-and-recall.md)。

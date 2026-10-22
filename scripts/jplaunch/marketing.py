@@ -10,14 +10,15 @@ from .profile import PREFIX, load_marketing_preset
 from .util import JST, as_int, jst_text, sem_equal
 
 TOOL_NOTE = "shopxz-japan-launch"
-# Documented coupon/create example palette; copywriting is mandatory for the API.
+# Coupon card palette (copywriting is mandatory for coupon/create): charcoal + warm off-white, the same
+# tones as the recall email layout, instead of the red/yellow admin example.
 COUPON_COPYWRITING = {
     "color": "blue", "timeType": 1,
-    "backgroundLeft": "rgba(255,72,72,100)", "backgroundRight": "rgba(255,13,125,100)",
-    "fontTip": "rgba(255,255,255,100)", "timeBg": "rgba(255,243,203,100)", "timeFont": "rgba(0,0,0,100)",
-    "couponBg": "rgba(255,248,227,100)", "couponFont": "rgba(233,5,73,100)",
-    "couponBtLeft": "rgba(255,139,2,100)", "couponBtRight": "rgba(255,109,4,100)",
-    "couponBtFont": "rgba(255,255,255,100)", "copyColor": "rgba(255,109,4,100)",
+    "backgroundLeft": "rgba(64,64,64,100)", "backgroundRight": "rgba(38,38,38,100)",
+    "fontTip": "rgba(255,255,255,100)", "timeBg": "rgba(247,245,242,100)", "timeFont": "rgba(64,64,64,100)",
+    "couponBg": "rgba(255,253,249,100)", "couponFont": "rgba(38,38,38,100)",
+    "couponBtLeft": "rgba(64,64,64,100)", "couponBtRight": "rgba(38,38,38,100)",
+    "couponBtFont": "rgba(255,255,255,100)", "copyColor": "rgba(64,64,64,100)",
 }
 COUPON_CONFLICT_FIELDS = ("value_type", "value", "minimum_requirements_type", "prerequisite_subtotal",
                           "product_selection_type", "entitled_product_ids", "entitled_collection_ids",
