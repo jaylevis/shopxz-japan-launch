@@ -33,7 +33,7 @@ CLI保留系统邮件现有启用状态；强化召回成功切换时才关闭�
 
 ## 营销字段（1.3）
 
-- `marketing.payment_deadline_days`：便利店/银行转账付款期限（天，整数4–60）。设置后建支付中提醒活动；null则不建。
+- `marketing.payment_deadline_days`：便利店/银行转账付款期限（天，整数4–60）。1.4.1 起预设默认 10（待付款订单不自动取消，期限仅用于提醒节奏与页面口径）；设置后建支付中提醒活动；null则不建。法务页的付款期限须写同一天数。
 - `marketing.adopt_activity_id`：接管现有未支付活动的ID（必须恰有4条邮件消息）。null时按工具命名新建。
 - `marketing.coupon_codes`：`{"five": "现有券码", "thousand": "现有券码"}`，用现有券代替新建；只校验可用，不改条件。
 

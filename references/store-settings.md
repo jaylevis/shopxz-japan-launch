@@ -69,8 +69,8 @@ CLI以应用列表和已启用币种识别多币种风险，并生成汇率后�
 | address_company | 3 | 公司字段隐藏 |
 | address_street_2 | 3 | 第二行地址隐藏；建筑物、房间号写在第一行地址 |
 | address_zip | 1 | 邮编必填 |
-| customer_can_cancel_order | 1 | 允许顾客取消，按业务需要调整 |
-| pending_order_cancel_datetime | 0 | 不自动取消；不能与长期召回冲突 |
+| customer_can_cancel_order | 2 | 不允许顾客自行取消（1.4.1 起默认）：付款后退款需人工处理，取消须顾客联系店铺 |
+| pending_order_cancel_datetime | 0 | 不自动取消待付款订单（商家人工处理）；若改为限时，不能短于最后一封召回/付款提醒 |
 
 当前API的 `product_status_check=1`是“不校验”，不要把1想当然视为“开启保护”。`pending_order_cancel_datetime`单位是**秒**，召回延时单位是**分钟**。若订单1小时自动取消而邮件在1天后才发，方案不一致；应调整已授权的交易规则或召回节奏，不能宣称14天召回可用。
 

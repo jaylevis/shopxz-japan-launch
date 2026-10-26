@@ -17,7 +17,7 @@
       "address_company": 3,
       "address_street_2": 3,
       "address_zip": 1,
-      "customer_can_cancel_order": 1,
+      "customer_can_cancel_order": 2,
       "pending_order_cancel_datetime": 0
     }
   },

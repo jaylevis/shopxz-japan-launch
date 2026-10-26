@@ -2,7 +2,7 @@
 name: shopxz-japan-launch
 description: 为已有 ShopXZ/Fecify 日本 B2C 实体商品店规划、配置和验收上线，覆盖店铺基础、支付、交易、国家与物流设置，以及应用、日语邮件、优惠券、强化召回、装修和迁移路径。适用于日本新站快速上线、对照标准补缺及中断续办；单项运营不默认重建全站。
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
 ---
 
 # ShopXZ 日本站快速上线

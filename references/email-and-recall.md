@@ -49,7 +49,7 @@
 
 便利店付款、银行转账下单后进入「支付中」。没有支付中活动时，`is_end_pending_order` 永远不触发，这些顾客会持续收到「手续未完成」邮件。
 
-设置 `marketing.payment_deadline_days`（整数，4–60）后，工具另建 `{PREFIX}-JP-PAYMENT` 活动：
+设置 `marketing.payment_deadline_days`（整数，4–60；1.4.1 起默认 10，第 2 封在第 8 天）后，工具另建 `{PREFIX}-JP-PAYMENT` 活动：
 
 | 消息 | 延时 | 模板 | 发送后 |
 |---|---|---|---|

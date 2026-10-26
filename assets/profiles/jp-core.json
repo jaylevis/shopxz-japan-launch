@@ -5,7 +5,7 @@
   "locale": {"language": "ja", "currency": "JPY", "timezone": "Asia/Tokyo", "countries": ["JP"]},
   "modules": {"basic": true, "japancheckout": true, "viewed": true, "fixedcart": true, "cfsaas": true, "emails": true, "marketing": false},
   "email": {"name_order": null, "activation": "preserve"},
-  "marketing": {"preset": "jp-apparel", "prefix": "", "schedule": "standard", "per_customer_limit": 1, "total_usage_limit": 0, "ends_at": "", "show_percentage_coupons": true, "allow_campaign_stacking": false, "payment_deadline_days": null, "adopt_activity_id": null, "coupon_codes": {}},
+  "marketing": {"preset": "jp-apparel", "prefix": "", "schedule": "standard", "per_customer_limit": 1, "total_usage_limit": 0, "ends_at": "", "show_percentage_coupons": true, "allow_campaign_stacking": false, "payment_deadline_days": 10, "adopt_activity_id": null, "coupon_codes": {}},
   "business": {"legal_name": "", "representative": "", "address": "", "customer_service_hours": ""},
   "shipping": {"base_fee": null, "free_threshold": null, "handling_business_days": null, "transit_business_days": null, "remote_area_rule": ""},
   "returns": {"window_days": null, "eligibility": "", "procedure": "", "return_address": "", "return_shipping_payer": "", "refund_timing": ""},
